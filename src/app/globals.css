@@ -1,0 +1,241 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 142 76% 36%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 142 76% 36%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 142 76% 36%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 142 76% 36%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-foreground/60;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animation for slide transitions */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes infiniteRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* New animation for a border that sweeps along the edges */
+@keyframes borderSweep {
+  0% {
+    background-position: 0% 50%;
+    transform: rotate(0deg);
+  }
+  100% {
+    background-position: 100% 50%;
+    transform: rotate(360deg);
+  }
+}
+
+/* Ripple effect */
+@keyframes ripple {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+/* src/app/globals.css */
+@layer utilities {
+  /* 1 – initial state */
+  .fade-in-up {
+    @apply opacity-0 translate-y-8;
+  }
+  /* 2 – after it enters the viewport */
+  .fade-in-up.reveal {
+    @apply opacity-100 translate-y-0 transition-all duration-700 ease-out;
+  }
+}
+
+/* Custom rotating border for "OUR STORES" button - new attempt */
+.rotating-border-button {
+  position: relative;
+  z-index: 1;
+  background: transparent; /* Ensure button background is transparent */
+  border: 1px solid #528C4B; /* Base border for context */
+  overflow: hidden;
+}
+
+.rotating-border-button::before {
+  content: '';
+  position: absolute;
+  top: -20%; /* Adjust to start outside the border */
+  left: -20%; /* Adjust to start outside the border */
+  width: 140%; /* Make it larger to cover the sweep */
+  height: 140%; /* Make it larger to cover the sweep */
+  background: linear-gradient(to right, transparent, #528C4B, transparent); /* The sweeping line */
+  background-size: 20% 100%; /* Control the width of the sweeping line */
+  animation: borderSweep 2s linear infinite; /* Shorter duration for faster sweep */
+  z-index: -1;
+  border-radius: 0.75rem; /* Match button's border-radius */
+}
+
+/* Removing previous border animations for a fresh start */
+/* New animation for the "Our Stores" button */
+
+.alefox-btn {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.alefox-btn__item {
+  position: absolute;
+  background-color: #528C4B; /* Color of the running border */
+}
+
+/* Top border */
+.alefox-btn__item:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px; /* Border thickness */
+  animation: runTop 2s linear infinite;
+}
+
+/* Right border */
+.alefox-btn__item:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px; /* Border thickness */
+  height: 100%;
+  animation: runRight 2s linear infinite;
+}
+
+/* Bottom border */
+.alefox-btn__item:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px; /* Border thickness */
+  animation: runBottom 2s linear infinite;
+}
+
+/* Left border */
+.alefox-btn__item:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px; /* Border thickness */
+  height: 100%;
+  animation: runLeft 2s linear infinite;
+}
+
+@keyframes runTop {
+  0% { left: -100%; }
+  50%, 100% { left: 100%; }
+}
+
+@keyframes runRight {
+  0% { top: -100%; }
+  50%, 100% { top: 100%; }
+}
+
+@keyframes runBottom {
+  0% { right: -100%; }
+  50%, 100% { right: 100%; }
+}
+
+@keyframes runLeft {
+  0% { bottom: -100%; }
+  50%, 100% { bottom: 100%; }
+}

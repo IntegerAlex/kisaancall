@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Image from "next/image"
-import { ChevronLeft, ChevronRight, Play, Pause, Heart } from "lucide-react"
+import { ChevronLeft, ChevronRight, Play, Pause, Heart, Image as ImageIcon } from "lucide-react"
 import { Button } from "./ui/button"
 import { Card, CardContent } from "./ui/card"
 import { cn } from "@/lib/utils"
@@ -48,6 +48,8 @@ export default function ImageSlider({
 }: ImageSliderProps) {
   const [currentIndex, setCurrentIndex] = React.useState(0)
   const [isPlaying, setIsPlaying] = React.useState(autoPlay)
+  const [imageErrors, setImageErrors] = React.useState<Record<number, boolean>>({})
+  const [imageLoaded, setImageLoaded] = React.useState<Record<number, boolean>>({})
   const intervalRef = React.useRef<NodeJS.Timeout | null>(null)
 
   const nextSlide = React.useCallback(() => {
@@ -68,6 +70,14 @@ export default function ImageSlider({
 
   const togglePlayPause = () => {
     setIsPlaying(!isPlaying)
+  }
+
+  const handleImageError = (index: number) => {
+    setImageErrors(prev => ({ ...prev, [index]: true }))
+  }
+
+  const handleImageLoad = (index: number) => {
+    setImageLoaded(prev => ({ ...prev, [index]: true }))
   }
 
   React.useEffect(() => {
@@ -110,14 +120,36 @@ export default function ImageSlider({
           >
             {sliderImages.map((image, index) => (
               <div key={index} className="relative min-w-full h-full">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  className="object-cover"
-                  priority={index === 0}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-                />
+                {imageErrors[index] ? (
+                  <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                    <div className="text-center text-white">
+                      <ImageIcon className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                      <p className="text-lg">Image failed to load</p>
+                      <p className="text-sm opacity-70">{image.alt}</p>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      className={cn(
+                        "object-cover transition-opacity duration-300",
+                        imageLoaded[index] ? "opacity-100" : "opacity-0"
+                      )}
+                      priority={index === 0}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                      onError={() => handleImageError(index)}
+                      onLoad={() => handleImageLoad(index)}
+                    />
+                    {!imageLoaded[index] && !imageErrors[index] && (
+                      <div className="absolute inset-0 bg-gray-800 flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-16 w-16 border-4 border-white/20 border-t-white"></div>
+                      </div>
+                    )}
+                  </>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
 
                 <div className="absolute bottom-0 left-0 w-full px-6 md:px-12 lg:px-16 pb-[120px] flex items-end justify-start">

@@ -6,10 +6,27 @@ import Image from 'next/image';
 const ContactFormSection: React.FC = () => {
   return (
     <section className="relative bg-black overflow-hidden">
+      <style jsx>{`
+        @keyframes slideInFromLeft {
+          from {
+            transform: translateX(-100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+
+        .animate-slide-in {
+          animation: slideInFromLeft 1s ease-out forwards;
+        }
+      `}</style>
+
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-stretch">
         
-        {/* Left Section with farmer image */}
-        <div className="relative w-full lg:w-1/2 min-h-[500px] lg:min-h-[700px]">
+        {/* Left Section with animated farmer image */}
+        <div className="relative w-full lg:w-1/2 min-h-[500px] lg:min-h-[700px] animate-slide-in">
           <Image
             src="/images/contact-1-1.jpg"
             alt="Farmer with vegetables"
@@ -47,7 +64,7 @@ const ContactFormSection: React.FC = () => {
         </div>
 
         {/* Right Section with form */}
-        <div className="w-full lg:w-1/2 bg-[#fdfcf6] p-6 md:p-12 lg:p-20 flex items-center justify-center relative">
+        <div className="w-full lg:w-1/2 bg-black p-6 md:p-12 lg:p-20 flex items-center justify-center relative">
           <div className="absolute right-0 bottom-0 w-32 h-32 lg:w-48 lg:h-48 z-0 translate-x-1/3 translate-y-1/3">
             <Image
               src="/images/broccoli.png"
@@ -56,28 +73,26 @@ const ContactFormSection: React.FC = () => {
               className="object-contain"
             />
           </div>
-          <div className="relative z-10 w-full max-w-xl">
+          <div className="relative z-10 w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
             <p className="text-green-600 text-sm font-semibold uppercase tracking-wide flex items-center gap-2 mb-2">
               <span>🌿</span> Contact Us
             </p>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-10">
+            <h2 className="text-2xl font-extrabold text-gray-900 mb-6">
               Get in Touch
             </h2>
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <input
-                  type="text"
-                  placeholder="Name"
-                  className="w-full px-4 py-3 rounded border border-gray-300 focus:ring-[#528C4B] focus:border-[#528C4B] outline-none"
-                  required
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className="w-full px-4 py-3 rounded border border-gray-300 focus:ring-[#528C4B] focus:border-[#528C4B] outline-none"
-                  required
-                />
-              </div>
+            <form className="space-y-4">
+              <input
+                type="text"
+                placeholder="Name"
+                className="w-full px-4 py-3 rounded border border-gray-300 focus:ring-[#528C4B] focus:border-[#528C4B] outline-none"
+                required
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                className="w-full px-4 py-3 rounded border border-gray-300 focus:ring-[#528C4B] focus:border-[#528C4B] outline-none"
+                required
+              />
               <input
                 type="text"
                 placeholder="Address"

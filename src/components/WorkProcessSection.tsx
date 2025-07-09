@@ -8,14 +8,12 @@ interface WorkProcessCardProps {
   imageSrc: string
   title: string
   description: string
-  stepNumber: number
 }
 
 const WorkProcessCard: React.FC<WorkProcessCardProps> = ({
   imageSrc,
   title,
   description,
-  stepNumber,
 }) => {
   const [imageError, setImageError] = React.useState(false)
   const [imageLoaded, setImageLoaded] = React.useState(false)
@@ -29,7 +27,14 @@ const WorkProcessCard: React.FC<WorkProcessCardProps> = ({
   }
 
   return (
-    <div className="relative group flex-1 min-w-[280px] max-w-[320px] bg-[#F7F5F0] rounded-lg shadow-md overflow-visible transition-all duration-300 ease-in-out hover:bg-[#528C4B] pb-16 pt-[100px] text-center">
+    <div className="relative group flex-1 min-w-[280px] max-w-[320px] rounded-lg shadow-md overflow-visible transition-all duration-300 ease-in-out pb-16 pt-[100px] text-center">
+      {/* New background container with animated overlay */}
+      <div className="absolute inset-0 bg-[#F7F5F0] rounded-lg overflow-hidden">
+        {/* Animated green overlay */}
+        <div className="absolute inset-0 bg-[#528C4B] transform scale-y-0 origin-top group-hover:scale-y-100 transition-transform duration-300 ease-in-out"></div>
+      </div>
+
+      {/* Image container - ensure it has z-index to be on top */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-white shadow-lg border-4 border-white overflow-hidden z-10">
         <div className="relative w-full h-full flex items-center justify-center">
           {imageError ? (
@@ -59,7 +64,9 @@ const WorkProcessCard: React.FC<WorkProcessCardProps> = ({
           )}
         </div>
       </div>
-      <div className="p-6 relative z-0">
+
+      {/* Text content - ensure it has z-index to be on top */}
+      <div className="p-6 relative z-10">
         <h3 className="text-xl font-bold mb-3 text-gray-800 transition-colors duration-300 group-hover:text-white">
           {title}
         </h3>
@@ -67,10 +74,6 @@ const WorkProcessCard: React.FC<WorkProcessCardProps> = ({
           {description}
         </p>
       </div>
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-gray-800 text-white flex items-center justify-center font-bold text-lg group-hover:bg-[#528C4B] transition-colors duration-300">
-        {`0${stepNumber}`}
-      </div>
-      <div className="absolute bottom-0 left-0 right-0 h-16 bg-[#F7F5F0] group-hover:bg-[#528C4B] transition-colors duration-300 ease-in-out"></div>
     </div>
   )
 }
@@ -117,7 +120,6 @@ const WorkProcessSection: React.FC = () => {
               imageSrc={step.imageSrc}
               title={step.title}
               description={step.description}
-              stepNumber={index + 1}
             />
           ))}
         </div>

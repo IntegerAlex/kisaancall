@@ -13,11 +13,11 @@ export default function Home() {
     <main className="min-h-screen bg-background relative">
       <Header />
       <ImageSlider className="w-full" />
+      <AboutUsSection />
       <OurServices />
       <WorkProcessSection />
       <ContactFormSection />
       <OurProjects />
-      <AboutUsSection />
       <FAQSection />
       <Footer />
     </main>

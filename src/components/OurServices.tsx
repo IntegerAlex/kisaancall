@@ -81,26 +81,22 @@ const OurServices = () => {
               data-card
               className="fade-in-up group relative overflow-hidden rounded-xl border border-[#e7e7e7] bg-white shadow-sm"
             >
-              {/* top picture */}
-              <div className="relative h-64 w-full">
-                <Image
-                  src={s.image}
-                  alt={s.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+              {/* top picture with padding and reduced width */}
+              <div className="relative h-64 w-full px-4 pt-4">
+                <div className="relative h-full w-full overflow-hidden rounded-lg">
+                  <Image
+                    src={s.image}
+                    alt={s.title}
+                    fill
+                    className="z-10 object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
               </div>
 
               {/* ---------- Content area ---------- */}
               <div className="relative px-10 pb-16 pt-20 text-center">
-                {/* black overlay – only below the image */}
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0 -z-10 bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-90"
-                />
-
                 {/* floating icon */}
-                <span className="absolute left-1/2 top-0 z-10 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-5xl text-green-600 shadow-md transition-colors duration-300 group-hover:bg-green-600 group-hover:text-white">
+                <span className="absolute left-1/2 top-0 z-20 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-5xl text-green-600 shadow-md transition-colors duration-300 group-hover:bg-green-600 group-hover:text-white">
                   <i className={s.iconClass} />
                 </span>
 
@@ -111,24 +107,14 @@ const OurServices = () => {
                 <p className="text-base leading-7 text-gray-600 transition-colors duration-300 group-hover:text-gray-300">
                   {s.description}
                 </p>
+              </div>
 
-                {/* round arrow at the bottom */}
-                <a
-                  href="service-d-fresh.html"
-                  className="absolute left-1/2 bottom-0 z-10 flex h-14 w-14 -translate-x-1/2 translate-y-1/2 items-center justify-center rounded-full bg-white text-green-600 text-xl shadow-md transition-colors duration-300 group-hover:bg-green-600 group-hover:text-white"
-                >
-                  <i className="icofont-arrow-up" />
-                </a>
+              {/* full card overlay that slides down from top */}
+              <div className="absolute inset-0 -z-10 overflow-hidden">
+                <div className="absolute inset-x-0 top-0 h-0 bg-black transition-all duration-1000 ease-in-out group-hover:h-full" />
               </div>
             </div>
           ))}
-        </div>
-
-        {/* ---------- Dots (static) ---------- */}
-        <div className="mt-12 flex justify-center space-x-2">
-          <span className="h-2 w-2 rounded-full bg-green-600" />
-          <span className="h-2 w-2 rounded-full bg-gray-300" />
-          <span className="h-2 w-2 rounded-full bg-gray-300" />
         </div>
       </div>
     </section>

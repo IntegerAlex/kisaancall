@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Play } from 'lucide-react';
+  //import { Play } from 'lucide-react';
 import { Button } from './ui/button';
 
 const ContactFormSection: React.FC = () => {
@@ -126,9 +126,6 @@ const ContactFormSection: React.FC = () => {
                         <span className="alefox-btn__item"></span>
                         <span className="relative z-10">SEND REQUEST</span>
                       </Button>
-                      <button className="ripple-button relative w-16 h-16 rounded-full border border-white text-white backdrop-blur-sm flex items-center justify-center">
-                      <Play className="w-6 h-6 z-10" />
-                      </button>
                     </div>
             </form>
           </div>

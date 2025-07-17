@@ -82,7 +82,6 @@ const AboutUsSection = () => {
                         <span className="alefox-btn__item"></span>
                         <span className="relative z-10">ABOUT MORE</span>
                       </Button>
-                     
                     </div>
               <div className="w-full md:max-w-[213px] border border-gray-200 rounded-lg overflow-hidden">
                 <div className="relative group">

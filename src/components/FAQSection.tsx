@@ -135,9 +135,9 @@ const FAQSection = () => {
               <Image
                 src="/images/faq-1-1.jpg"
                 alt="Farmer with organic vegetables"
-                width={600}
-                height={700}
-                className="object-cover w-full h-full"
+                width={400}
+                height={400}
+                className="object-cover w-full h-[600px]"
               />
               
               {/* Floating question mark icon */}

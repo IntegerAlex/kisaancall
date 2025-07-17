@@ -2,6 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { Play } from 'lucide-react';
+import { Button } from './ui/button';
 
 const ContactFormSection: React.FC = () => {
   return (
@@ -113,13 +115,21 @@ const ContactFormSection: React.FC = () => {
                 <option value="consulting">Agricultural Consulting</option>
                 <option value="delivery">Fresh Produce Delivery</option>
               </select>
-
-              <button
-                type="submit"
-                className="w-full text-[#528C4B] font-bold py-4 border border-[#528C4B] rounded-md transition-all hover:bg-[#528C4B] hover:text-white duration-300"
-              >
-                SEND REQUEST
-              </button>
+              <div className="flex flex-col sm:flex-row gap-4 animate-fadeInUp" style={{ animationDelay: '0.8s' }}>
+                      <Button
+                        size="lg"
+                        className="alefox-btn bg-transparent text-[#528C4B] px-4 py-3 w-full rounded-lg transition-all duration-300 hover:bg-[#528C4B] hover:text-white"
+                      >
+                        <span className="alefox-btn__item"></span>
+                        <span className="alefox-btn__item"></span>
+                        <span className="alefox-btn__item"></span>
+                        <span className="alefox-btn__item"></span>
+                        <span className="relative z-10">SEND REQUEST</span>
+                      </Button>
+                      <button className="ripple-button relative w-16 h-16 rounded-full border border-white text-white backdrop-blur-sm flex items-center justify-center">
+                      <Play className="w-6 h-6 z-10" />
+                      </button>
+                    </div>
             </form>
           </div>
         </div>

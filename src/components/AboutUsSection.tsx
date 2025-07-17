@@ -71,18 +71,19 @@ const AboutUsSection = () => {
 
             {/* Bottom Section */}
             <div className="flex flex-col md:flex-row gap-6 pt-8">
-              <div className="flex-1 space-y-2">
-                <p className="text-gray-700">Atiam rhoncus sit amet adip ipsum.</p>
-                <p className="text-gray-700">Food rhoncus sit amet natural.</p>
-                <div className="pt-4">
-                  <Button
-                    size="lg"
-                    className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors font-medium"
-                  >
-                    ABOUT MORE
-                  </Button>
-                </div>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 animate-fadeInUp" style={{ animationDelay: '0.8s' }}>
+                      <Button
+                        size="lg"
+                        className="alefox-btn bg-transparent text-[#528C4B] px-8 py-3 rounded-lg transition-all duration-300 hover:bg-[#528C4B] hover:text-white"
+                      >
+                        <span className="alefox-btn__item"></span>
+                        <span className="alefox-btn__item"></span>
+                        <span className="alefox-btn__item"></span>
+                        <span className="alefox-btn__item"></span>
+                        <span className="relative z-10">ABOUT MORE</span>
+                      </Button>
+                     
+                    </div>
               <div className="w-full md:max-w-[213px] border border-gray-200 rounded-lg overflow-hidden">
                 <div className="relative group">
                   <Image

@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Image from "next/image"
-import { ChevronLeft, ChevronRight, Play, Pause, Heart, Image as ImageIcon } from "lucide-react"
+import { ChevronLeft, ChevronRight, Play, Image as ImageIcon } from "lucide-react"
 import { Button } from "./ui/button"
 import { Card, CardContent } from "./ui/card"
 import { cn } from "@/lib/utils"
@@ -224,16 +224,6 @@ export default function ImageSlider({
           >
             <ChevronRight className="h-6 w-6" />
           </Button>
-
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm transition-all duration-300"
-            onClick={togglePlayPause}
-            aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
-          >
-            {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5" />}
-          </Button>
         </div>
 
         <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col space-y-2">
@@ -254,10 +244,7 @@ export default function ImageSlider({
           ))}
         </div>
 
-        <div className="absolute bottom-[100px] left-[70px] flex flex-col items-center">
-          <Heart className="w-6 h-6 text-white mb-2" fill="white" />
-          <div className="w-0.5 h-20 border-l border-dashed border-white"></div>
-        </div>
+          
       </CardContent>
 
       {/* 🔁 Add animation CSS here */}

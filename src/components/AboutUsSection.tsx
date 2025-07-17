@@ -7,7 +7,7 @@ import { Settings, Building, BarChart2, Play } from "lucide-react";
 const AboutUsSection = () => {
   return (
     <section className="relative py-16 md:py-24 bg-white">
-      {/* Decorative Leaf - larger and higher */}
+      {/* Decorative Leaf */}
       <Image
         src="/images/about-2-shape-2.png"
         alt="Decorative Leaf"
@@ -28,7 +28,7 @@ const AboutUsSection = () => {
                 priority
                 className="object-cover object-center"
               />
-              {/* Floating image on top */}
+              {/* Floating image */}
               <div className="absolute top-14 right-0 max-w-[210px] border-[7px] border-white animate-bounce z-10">
                 <Image
                   src="/images/about-2-2.jpg"
@@ -57,18 +57,16 @@ const AboutUsSection = () => {
 
             {/* Stats Box */}
             <div className="flex flex-col sm:flex-row items-center justify-between bg-white shadow-md border border-gray-200 rounded-lg overflow-x-auto divide-y sm:divide-y-0 sm:divide-x">
-              {[
-                { icon: Settings, value: "99M+" },
-                { icon: Building, value: "68K+" },
-                { icon: BarChart2, value: "789+" },
-              ].map(({ icon: Icon, value }, idx) => (
-                <div key={idx} className="flex items-center gap-4 p-6 flex-1 min-w-[150px]">
-                  <div className="w-14 h-14 bg-gray-900 text-white rounded-full flex items-center justify-center">
-                    <Icon className="w-6 h-6" />
+              {[{ icon: Settings, value: "99M+" }, { icon: Building, value: "68K+" }, { icon: BarChart2, value: "789+" }].map(
+                ({ icon: Icon, value }, idx) => (
+                  <div key={idx} className="flex items-center gap-4 p-6 flex-1 min-w-[150px]">
+                    <div className="w-14 h-14 bg-gray-900 text-white rounded-full flex items-center justify-center">
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-800">{value}</h3>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-800">{value}</h3>
-                </div>
-              ))}
+                )
+              )}
             </div>
 
             {/* Bottom Section */}
@@ -95,21 +93,9 @@ const AboutUsSection = () => {
                     className="object-cover w-full h-full"
                   />
                   <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-colors">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="relative w-16 h-16 rounded-full border-white text-white hover:bg-white/20 backdrop-blur-sm overflow-hidden"
-                    >
-                      <Play className="w-6 h-6 text-white z-10" />
-                      <span
-                        className="absolute inset-0 block rounded-full bg-white/20 animate-ripple"
-                        style={{
-                          animationDuration: "1.5s",
-                          animationTimingFunction: "ease-out",
-                          animationIterationCount: "infinite",
-                        }}
-                      ></span>
-                    </Button>
+                    <button className="ripple-button relative w-16 h-16 rounded-full border border-white text-white backdrop-blur-sm flex items-center justify-center">
+                      <Play className="w-6 h-6 z-10" />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -117,6 +103,38 @@ const AboutUsSection = () => {
           </div>
         </div>
       </div>
+
+      {/* 👇 Custom keyframe animation via styled-jsx */}
+      <style jsx>{`
+        .ripple-button::before,
+        .ripple-button::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: 9999px;
+          background: rgba(255, 255, 255, 0.3);
+          animation: ripple 1.6s ease-out infinite;
+        }
+
+        .ripple-button::after {
+          animation-delay: 0.8s;
+        }
+
+        @keyframes ripple {
+          0% {
+            transform: scale(0.6);
+            opacity: 0.6;
+          }
+          70% {
+            transform: scale(1.8);
+            opacity: 0;
+          }
+          100% {
+            transform: scale(1.8);
+            opacity: 0;
+          }
+        }
+      `}</style>
     </section>
   );
 };

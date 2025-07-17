@@ -178,14 +178,9 @@ export default function ImageSlider({
                         <span className="alefox-btn__item"></span>
                         <span className="relative z-10">OUR STORES</span>
                       </Button>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        className="relative w-20 h-20 rounded-full border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
-                      >
-                        <Play className="w-7 h-7 text-white z-10 relative" />
-                        <span className="absolute inset-0 block rounded-full bg-white/40 animate-ripple origin-center" style={{ animationDuration: '2.5s', animationTimingFunction: 'linear', animationIterationCount: 'infinite' }}></span>
-                      </Button>
+                      <button className="ripple-button relative w-16 h-16 rounded-full border border-white text-white backdrop-blur-sm flex items-center justify-center">
+                      <Play className="w-6 h-6 z-10" />
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -249,19 +244,50 @@ export default function ImageSlider({
 
       {/* 🔁 Add animation CSS here */}
       <style jsx>{`
-        @keyframes infiniteRotate {
-          0% {
-            transform: rotate(0deg);
-          }
-          100% {
-            transform: rotate(360deg);
-          }
-        }
-        .animate-infiniteRotate {
-          animation: infiniteRotate 10s linear infinite;
-          transform-origin: center;
-        }
-      `}</style>
+  @keyframes infiniteRotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .animate-infiniteRotate {
+    animation: infiniteRotate 10s linear infinite;
+    transform-origin: center;
+  }
+
+  /* Ripple effect for Play button */
+  .ripple-button::before,
+  .ripple-button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.3);
+    animation: ripple 2.5s linear infinite;
+  }
+
+  .ripple-button::after {
+    animation-delay: 1.25s;
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: scale(0.6);
+      opacity: 0.5;
+    }
+    70% {
+      transform: scale(2);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+`}</style>
+
     </Card>
   )
 }
